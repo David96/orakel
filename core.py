@@ -10,6 +10,7 @@ from msgdatabase import MessageDatabase
 from search import Search
 from pingpong import PingPong
 from flooding import Flooding
+from chatflooding import ChatFlooding
 from cli import CLI
 
 class Core(Module):
@@ -21,6 +22,7 @@ class Core(Module):
 		self.search = Search(search_engines, parent=self)
 		self.pingpong = PingPong(parent=self)
 		self.flooding = Flooding(maxlength, paste, parent=self)
+		self.chatflooding = ChatFlooding(2, 5, 5, 5, 2, parent=self)
 		self.cli = CLI(parent=self)
 		self.log.info("load complete")
 
