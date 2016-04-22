@@ -10,6 +10,7 @@ import dns.resolver
 import icmplib
 import random
 import traceback
+import urllib
 import signal
 from lisp import parse as lisp_parse, execute as lisp_execute, \
 		create_default_context, set_print_function
@@ -90,6 +91,9 @@ def dnsquery(domain, record='A'):
 	resolver.lifetime = 5
 	result = [ str(x) for x in resolver.query(domain, record) ]
 	return result
+
+def google(question):
+	return "http://www.lmdfdg.com/?q=%s" % urllib.parse.quote(question)
 
 class ReturnException(Exception):
 	def __init__(self, value):
@@ -272,6 +276,7 @@ class Scripting(Module):
 			"ping": ping,
 			"alive": alive,
 			"dnsquery": dnsquery,
+			"google": google,
 			"random": random.random,
 			"randrange": random.randrange,
 			"oneof": oneof
